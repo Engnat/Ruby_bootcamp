@@ -33,7 +33,7 @@ instructor1 = Instructor.new({
     @instructors = []
 
       def create_lesson (subject , instructor)
-        @leasson << Lesson.new({
+        @lesson << Lesson.new({
           subject: subject,
           instructor: instructor
           })
@@ -48,8 +48,8 @@ instructor1 = Instructor.new({
         end
       end
 
-      def print_insctructor
-        @instructors.each_with_index do |instructor|
+      def print_instructor
+        @instructors.each_with_index do |instructor , index|
           puts "#{index}. #{instructor.first_name}: #{instructor.clain_your_strengths}"
         end
       end
@@ -87,13 +87,15 @@ instructor1 = Instructor.new({
             puts "Please type the subject at the lesson"
             subject = gets.chomp.downcase
             puts "Please select the instructor(type index)"
-            instructor_nickname = gets.chomp.downcase
-            create_lesson subject, @instructor
+            print_instructor
+            instructor_index = gets.chomp.to_i
+            create_lesson subject, @instructors[instructor_index]
           else
             puts "it must exit a instructor"
           end
             when "10"
+              print_lessons
             when "11"
-              print_insctructor
+              print_instructor
         end
       end while @user_input != "exit"
